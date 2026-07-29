@@ -35,6 +35,7 @@ if opentelemetry is not None:
         raise ImportError(msg) from exc
 
 import pytest
+
 from google.cloud.bigquery import opentelemetry_tracing
 
 TEST_SPAN_NAME = "bar"
@@ -196,6 +197,7 @@ def test_optional_job_attributes(setup):
 @pytest.mark.skipif(opentelemetry is None, reason="Require `opentelemetry`")
 def test_default_no_data_leakage(setup):
     import google.auth.credentials
+
     from google.cloud.bigquery import client, job
 
     mock_credentials = mock.Mock(spec=google.auth.credentials.Credentials)
@@ -242,8 +244,9 @@ def test_default_no_data_leakage(setup):
 
 @pytest.mark.skipif(opentelemetry is None, reason="Require `opentelemetry`")
 def test_span_creation_error(setup):
-    import google.auth.credentials
     from google.api_core.exceptions import GoogleAPICallError, InvalidArgument
+    import google.auth.credentials
+
     from google.cloud.bigquery import client
 
     mock_credentials = mock.Mock(spec=google.auth.credentials.Credentials)

@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import logging
 from contextlib import contextmanager
+import logging
 
 from google.api_core.exceptions import GoogleAPICallError  # type: ignore
 

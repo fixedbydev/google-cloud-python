@@ -17,6 +17,7 @@ import datetime
 
 import google.cloud._helpers
 import pytest
+
 from google.cloud import bigquery
 
 

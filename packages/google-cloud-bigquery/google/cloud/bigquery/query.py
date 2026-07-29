@@ -14,10 +14,10 @@
 
 """BigQuery query processing."""
 
+from collections import OrderedDict
 import copy
 import datetime
 import decimal
-from collections import OrderedDict
 from typing import Any, Dict, Optional, Union, cast
 
 from google.cloud.bigquery import _helpers

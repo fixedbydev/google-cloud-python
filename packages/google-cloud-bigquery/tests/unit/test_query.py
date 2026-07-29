@@ -1052,6 +1052,7 @@ class Test_RangeQueryParameter(unittest.TestCase):
 
     def test_to_api_repr_w_datetime_datetime(self):
         from google.cloud._helpers import UTC  # type: ignore
+
         from google.cloud.bigquery._helpers import _RFC3339_MICROS_NO_ZULU
 
         now = datetime.datetime.now(UTC)
@@ -2127,6 +2128,7 @@ class Test__query_param_from_api_repr(unittest.TestCase):
 
     def test_w_scalar_timestamp(self):
         from google.cloud._helpers import UTC
+
         from google.cloud.bigquery.query import ScalarQueryParameter
 
         RESOURCE = {
@@ -2146,6 +2148,7 @@ class Test__query_param_from_api_repr(unittest.TestCase):
 
     def test_w_scalar_timestamp_micros(self):
         from google.cloud._helpers import UTC
+
         from google.cloud.bigquery.query import ScalarQueryParameter
 
         RESOURCE = {

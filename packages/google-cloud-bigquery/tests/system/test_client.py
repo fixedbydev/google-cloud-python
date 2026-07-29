@@ -25,12 +25,10 @@ import pathlib
 import random
 import string
 import time
+from typing import Optional
 import unittest
 import uuid
-from typing import Optional
 
-import psutil
-import pytest
 from google.api_core.exceptions import (
     BadRequest,
     ClientError,
@@ -42,17 +40,20 @@ from google.api_core.exceptions import (
     ServiceUnavailable,
     TooManyRequests,
 )
-from google.cloud import bigquery, storage
 from google.cloud._helpers import UTC
-from google.cloud.bigquery import dbapi, enums
-from google.cloud.bigquery.dataset import Dataset, DatasetReference
-from google.cloud.bigquery.table import Table
 from google.cloud.datacatalog_v1 import PolicyTagManagerClient
 from google.cloud.datacatalog_v1 import types as datacatalog_types
 from google.cloud.resourcemanager_v3 import TagKeysClient, TagValuesClient
 from google.cloud.resourcemanager_v3 import types as resourcemanager_types
+import psutil
+import pytest
 from test_utils.retry import RetryErrors, RetryInstanceState, RetryResult
 from test_utils.system import unique_resource_id
+
+from google.cloud import bigquery, storage
+from google.cloud.bigquery import dbapi, enums
+from google.cloud.bigquery.dataset import Dataset, DatasetReference
+from google.cloud.bigquery.table import Table
 
 from . import helpers
 
@@ -2236,6 +2237,7 @@ class TestBigQuery(unittest.TestCase):
 
     def _load_table_for_dml(self, rows, dataset_id, table_id):
         from google.cloud._testing import _NamedTemporaryFile
+
         from google.cloud.bigquery.job import (
             CreateDisposition,
             SourceFormat,

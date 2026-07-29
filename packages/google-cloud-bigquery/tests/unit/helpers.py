@@ -14,14 +14,16 @@
 
 from unittest import mock
 
+import pytest
+
 import google.cloud.bigquery.client
 import google.cloud.bigquery.dataset
-import pytest
 
 
 def make_connection(*responses):
-    import google.cloud.bigquery._http
     from google.cloud.exceptions import NotFound
+
+    import google.cloud.bigquery._http
 
     mock_conn = mock.create_autospec(google.cloud.bigquery._http.Connection)
     mock_conn.user_agent = "testing 1.2.3"

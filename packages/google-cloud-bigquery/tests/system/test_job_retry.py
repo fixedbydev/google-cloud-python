@@ -17,8 +17,9 @@ import threading
 import time
 
 import google.api_core.exceptions
-import google.cloud.bigquery
 import pytest
+
+import google.cloud.bigquery
 
 
 def thread(func):

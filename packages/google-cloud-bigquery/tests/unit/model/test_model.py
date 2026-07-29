@@ -17,8 +17,9 @@
 import datetime
 
 import google.cloud._helpers
-import google.cloud.bigquery.model
 import pytest
+
+import google.cloud.bigquery.model
 
 KMS_KEY_NAME = "projects/1/locations/us/keyRings/1/cryptoKeys/1"
 

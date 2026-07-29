@@ -17,8 +17,9 @@ import http
 import unittest
 from unittest import mock
 
-import pytest
 from google.api_core.future import polling
+import pytest
+
 from google.cloud.bigquery.retry import DEFAULT_GET_JOB_TIMEOUT
 
 from ..helpers import make_connection
@@ -642,8 +643,9 @@ class Test_AsyncJob(unittest.TestCase):
         self.assertEqual(job._properties, expected)
 
     def test_exists_defaults_miss(self):
-        from google.cloud.bigquery.retry import DEFAULT_RETRY
         from google.cloud.exceptions import NotFound
+
+        from google.cloud.bigquery.retry import DEFAULT_RETRY
 
         job = self._set_properties_job()
         job._properties["jobReference"]["location"] = self.LOCATION

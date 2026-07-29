@@ -15,6 +15,7 @@
 from unittest import mock
 
 import pytest
+
 from google.cloud import bigquery as bq
 
 

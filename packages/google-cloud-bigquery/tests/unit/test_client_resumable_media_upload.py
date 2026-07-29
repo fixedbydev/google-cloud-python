@@ -19,6 +19,7 @@ import json
 from unittest import mock
 
 import pytest
+
 from google.cloud.bigquery.table import TableReference
 
 from .helpers import make_connection
@@ -111,13 +112,14 @@ def _mock_transport(status_code, headers, content=b""):
 
 
 def _initiate_resumable_upload_helper(num_retries=None, mtls=False):
+    from google.resumable_media.requests import ResumableUpload
+
     from google.cloud.bigquery.client import (
         _DEFAULT_CHUNKSIZE,
         _GENERIC_CONTENT_TYPE,
         _get_upload_headers,
     )
     from google.cloud.bigquery.job import LoadJob, LoadJobConfig, SourceFormat
-    from google.resumable_media.requests import ResumableUpload
 
     # Create mocks to be checked for doing transport.
     resumable_url = "http://test.invalid?upload_id=hey-you"

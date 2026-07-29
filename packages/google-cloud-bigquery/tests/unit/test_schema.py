@@ -17,6 +17,7 @@ import unittest
 from unittest import mock
 
 import pytest
+
 from google.cloud import bigquery
 from google.cloud.bigquery import enums, schema
 from google.cloud.bigquery.schema import PolicyTagList

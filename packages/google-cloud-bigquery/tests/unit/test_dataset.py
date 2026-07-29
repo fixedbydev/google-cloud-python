@@ -16,6 +16,7 @@ import unittest
 from unittest import mock
 
 import pytest
+
 from google.cloud.bigquery.dataset import (
     AccessEntry,
     Condition,

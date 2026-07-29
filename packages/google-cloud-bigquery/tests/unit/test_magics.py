@@ -12,21 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from concurrent import futures
 import copy
 import re
-import warnings
-from concurrent import futures
 from unittest import mock
+import warnings
 
+from google.api_core import exceptions
 import google.auth.credentials
 import pytest
-from google.api_core import exceptions
+from test_utils.imports import maybe_fail_import
+
 from google.cloud import bigquery
 from google.cloud.bigquery import exceptions as bq_exceptions
 from google.cloud.bigquery import job, table
 from google.cloud.bigquery.retry import DEFAULT_TIMEOUT
-from test_utils.imports import maybe_fail_import
-
 from tests.unit.helpers import make_connection
 
 try:

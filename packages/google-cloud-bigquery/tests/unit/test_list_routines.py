@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import pytest
+
 from google.cloud.bigquery.retry import DEFAULT_TIMEOUT
 
 from .helpers import dataset_polymorphic, make_connection

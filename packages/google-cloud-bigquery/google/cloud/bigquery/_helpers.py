@@ -22,8 +22,8 @@ import math
 import os
 import re
 import textwrap
-import warnings
 from typing import Any, Optional, Tuple, Type, Union
+import warnings
 
 from dateutil import relativedelta
 from google.api_core import client_options as client_options_lib
@@ -31,11 +31,12 @@ from google.auth import credentials as ga_credentials  # type: ignore
 from google.cloud._helpers import (
     _RFC3339_MICROS,
     _RFC3339_NO_FRACTION,
-    UTC,  # type: ignore
     _date_from_iso8601_date,
     _datetime_from_microseconds,
     _to_bytes,
 )
+from google.cloud._helpers import UTC  # type: ignore
+
 from google.cloud.bigquery import enums
 
 TimeoutType = Union[float, None]

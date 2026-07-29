@@ -21,6 +21,7 @@ import unittest
 
 import google.cloud._helpers
 import pytest
+
 from google.cloud.bigquery import query, table
 from google.cloud.bigquery.dbapi import _helpers, exceptions
 

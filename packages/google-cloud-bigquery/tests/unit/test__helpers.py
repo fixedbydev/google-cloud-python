@@ -17,12 +17,13 @@ import decimal
 import json
 import os
 import unittest
-import warnings
 from unittest import mock
+import warnings
 
 import google.api_core
 import packaging
 import pytest
+
 from google.cloud.bigquery._helpers import _isinstance_or_raise
 
 
@@ -51,6 +52,7 @@ class Test_get_client_universe(unittest.TestCase):
 
     def test_with_client_options(self):
         from google.api_core import client_options
+
         from google.cloud.bigquery._helpers import _get_client_universe
 
         options = client_options.from_dict({"universe_domain": "foo.com"})
@@ -72,6 +74,7 @@ class Test_get_client_universe(unittest.TestCase):
     @mock.patch.dict(os.environ, {"GOOGLE_CLOUD_UNIVERSE_DOMAIN": "foo.com"})
     def test_with_environ_and_empty_options(self):
         from google.api_core import client_options
+
         from google.cloud.bigquery._helpers import _get_client_universe
 
         options = client_options.from_dict({})

@@ -19,6 +19,7 @@ from typing import Tuple
 
 import pytest
 import test_utils.prefixer
+
 from google.cloud import bigquery
 from google.cloud.bigquery import enums
 

@@ -17,6 +17,7 @@ import unittest
 
 import google.cloud._helpers
 import pytest
+
 from google.cloud.bigquery.dbapi import types
 
 

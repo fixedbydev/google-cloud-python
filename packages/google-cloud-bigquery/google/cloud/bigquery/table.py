@@ -21,8 +21,8 @@ import datetime
 import functools
 import operator
 import typing
-import warnings
 from typing import Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple, Union
+import warnings
 
 try:
     import pandas  # type: ignore
@@ -55,16 +55,17 @@ else:
     _read_wkt = wkt.loads
 
 import google.api_core.exceptions
-import google.cloud._helpers  # type: ignore
 from google.api_core.page_iterator import HTTPIterator
+import google.cloud._helpers  # type: ignore
+
 from google.cloud.bigquery import (
     _helpers,
     _pandas_helpers,
     _string_references,
     _versions_helpers,
-    external_config,
 )
 from google.cloud.bigquery import exceptions as bq_exceptions
+from google.cloud.bigquery import external_config
 from google.cloud.bigquery import schema as _schema
 from google.cloud.bigquery._tqdm_helpers import get_progress_bar
 from google.cloud.bigquery.encryption_configuration import EncryptionConfiguration
@@ -82,6 +83,7 @@ if typing.TYPE_CHECKING:  # pragma: NO COVER
     import geopandas  # type: ignore
     import pandas
     import pyarrow
+
     from google.cloud import bigquery_storage  # type: ignore
     from google.cloud.bigquery.dataset import DatasetReference
 

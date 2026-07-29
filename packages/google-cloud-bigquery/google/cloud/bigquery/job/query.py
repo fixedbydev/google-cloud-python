@@ -21,9 +21,10 @@ import time
 import typing
 from typing import Any, Dict, Iterable, List, Optional, Union
 
-import requests
 from google.api_core import exceptions
 from google.api_core import retry as retries
+import requests
+
 from google.cloud.bigquery import _helpers
 from google.cloud.bigquery._tqdm_helpers import wait_for_query
 from google.cloud.bigquery.dataset import Dataset, DatasetListItem, DatasetReference
@@ -66,6 +67,7 @@ if typing.TYPE_CHECKING:  # pragma: NO COVER
     import geopandas  # type: ignore
     import pandas  # type: ignore
     import pyarrow  # type: ignore
+
     from google.cloud import bigquery_storage
     from google.cloud.bigquery.client import Client
     from google.cloud.bigquery.table import RowIterator

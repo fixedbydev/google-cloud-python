@@ -22,6 +22,7 @@ import typing
 from typing import Any, Dict, List, Optional, Union
 
 import google.cloud._helpers  # type: ignore
+
 from google.cloud.bigquery import _helpers, _string_references, external_config
 from google.cloud.bigquery.encryption_configuration import EncryptionConfiguration
 from google.cloud.bigquery.model import ModelReference

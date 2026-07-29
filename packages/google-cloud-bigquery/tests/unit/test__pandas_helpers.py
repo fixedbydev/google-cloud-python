@@ -22,9 +22,9 @@ import importlib.metadata as metadata
 import operator
 import queue
 import time
-import warnings
 from typing import Union
 from unittest import mock
+import warnings
 
 try:
     import pandas
@@ -44,6 +44,7 @@ except ImportError:
     geopandas = None
 
 import pytest
+
 from google import api_core
 from google.cloud.bigquery import (
     _pyarrow_helpers,
@@ -1885,6 +1886,7 @@ def test__download_table_bqstorage_shuts_down_workers(
     pytest.importorskip("google.cloud.bigquery_storage_v1")
     import google.cloud.bigquery_storage_v1.reader
     import google.cloud.bigquery_storage_v1.types
+
     from google.cloud.bigquery import dataset, table
 
     monkeypatch.setattr(

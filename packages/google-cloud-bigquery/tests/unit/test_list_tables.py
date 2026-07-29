@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import google.cloud.bigquery.dataset
 import pytest
+
+import google.cloud.bigquery.dataset
 from google.cloud.bigquery.retry import DEFAULT_TIMEOUT
 
 from .helpers import dataset_polymorphic, make_connection

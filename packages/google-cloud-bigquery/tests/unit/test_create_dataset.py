@@ -14,8 +14,9 @@
 
 from unittest import mock
 
-import google.cloud.bigquery.dataset
 import pytest
+
+import google.cloud.bigquery.dataset
 from google.cloud.bigquery.dataset import Dataset, DatasetReference
 from google.cloud.bigquery.retry import DEFAULT_TIMEOUT
 

@@ -1389,8 +1389,9 @@ def test_to_geodataframe(bigquery_client, dataset_id):
 def test_load_geodataframe(bigquery_client, dataset_id):
     geopandas = pytest.importorskip("geopandas")
     import pandas
-    from google.cloud.bigquery.schema import SchemaField
     from shapely import wkt
+
+    from google.cloud.bigquery.schema import SchemaField
 
     df = geopandas.GeoDataFrame(
         pandas.DataFrame(
@@ -1450,8 +1451,9 @@ def test_load_dataframe_w_shapely(bigquery_client, dataset_id):
 
 def test_load_dataframe_w_wkb(bigquery_client, dataset_id):
     wkt = pytest.importorskip("shapely.wkt")
-    from google.cloud.bigquery.schema import SchemaField
     from shapely import wkb
+
+    from google.cloud.bigquery.schema import SchemaField
 
     df = pandas.DataFrame(
         dict(name=["foo", "bar"], geo=[None, wkb.dumps(wkt.loads("Point(1 1)"))])

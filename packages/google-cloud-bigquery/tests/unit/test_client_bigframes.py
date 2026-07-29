@@ -19,12 +19,13 @@ from __future__ import annotations
 import datetime
 from unittest import mock
 
-import google.auth.credentials
-import google.cloud.bigquery.client
-import pytest
 from google.api_core import exceptions
+import google.auth.credentials
+import pytest
+
 from google.cloud import bigquery
 from google.cloud.bigquery import _job_helpers
+import google.cloud.bigquery.client
 
 PROJECT = "test-project"
 LOCATION = "test-location"

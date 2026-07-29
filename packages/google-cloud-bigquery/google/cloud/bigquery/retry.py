@@ -14,10 +14,10 @@
 
 import logging
 
-import google.api_core.future.polling
-import requests.exceptions
 from google.api_core import exceptions, retry
+import google.api_core.future.polling
 from google.auth import exceptions as auth_exceptions  # type: ignore
+import requests.exceptions
 
 _LOGGER = logging.getLogger(__name__)
 

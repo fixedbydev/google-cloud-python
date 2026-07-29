@@ -19,6 +19,7 @@ import typing
 from typing import Any, Dict, Optional, Union
 
 import google.cloud._helpers  # type: ignore
+
 from google.cloud.bigquery import _helpers
 from google.cloud.bigquery.standard_sql import StandardSqlDataType, StandardSqlTableType
 

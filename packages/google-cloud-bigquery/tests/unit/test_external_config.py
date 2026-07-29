@@ -14,10 +14,11 @@
 
 import base64
 import copy
-import unittest
 from typing import Any, Dict, Optional
+import unittest
 
 import pytest
+
 from google.cloud.bigquery import external_config, schema
 from google.cloud.bigquery.enums import SourceColumnMatch
 

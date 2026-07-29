@@ -16,8 +16,9 @@ import datetime
 import decimal
 from typing import Tuple
 
-import pytest
 from google.api_core import exceptions
+import pytest
+
 from google.cloud import bigquery
 from google.cloud.bigquery import enums
 from google.cloud.bigquery.query import (

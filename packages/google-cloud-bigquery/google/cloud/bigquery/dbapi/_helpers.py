@@ -13,13 +13,13 @@
 #  limitations under the License.
 
 
+from collections import abc as collections_abc
 import datetime
 import decimal
 import functools
 import numbers
 import re
 import typing
-from collections import abc as collections_abc
 
 from google.cloud import bigquery
 from google.cloud.bigquery import query, table

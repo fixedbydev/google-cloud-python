@@ -2,6 +2,7 @@ import re
 import sys
 
 from google.api_core.exceptions import NotFound
+
 from google.cloud.bigquery import Client
 
 

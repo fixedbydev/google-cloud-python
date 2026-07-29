@@ -42,16 +42,17 @@ import dataclasses
 import datetime
 import functools
 import textwrap
+from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Union
 import uuid
 import warnings
-from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Union
 
+from google.api_core import retry as retries
 import google.api_core.exceptions as core_exceptions
+
+from google.cloud.bigquery import enums, job, table
 import google.cloud.bigquery.job.query
 import google.cloud.bigquery.query
 import google.cloud.bigquery.retry
-from google.api_core import retry as retries
-from google.cloud.bigquery import enums, job, table
 from google.cloud.bigquery.retry import POLLING_DEFAULT_VALUE
 
 # Avoid circular imports

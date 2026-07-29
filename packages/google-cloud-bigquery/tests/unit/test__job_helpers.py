@@ -15,9 +15,10 @@
 from typing import Any, Dict, Optional
 from unittest import mock
 
+from google.api_core import retry as retries
 import google.api_core.exceptions
 import pytest
-from google.api_core import retry as retries
+
 from google.cloud.bigquery import _job_helpers, enums, retry
 from google.cloud.bigquery.client import Client
 from google.cloud.bigquery.job import copy_ as job_copy

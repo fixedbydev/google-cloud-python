@@ -24,13 +24,13 @@ See the `BigQuery Magics reference documentation
 from __future__ import print_function
 
 import ast
+from concurrent import futures
 import copy
 import functools
 import re
 import sys
 import time
 import warnings
-from concurrent import futures
 
 try:
     import IPython  # type: ignore
@@ -39,12 +39,13 @@ try:
 except ImportError:
     raise ImportError("This module can only be loaded in IPython.")
 
-import google.auth  # type: ignore
-import google.cloud.bigquery.dataset
 from google.api_core import client_info, client_options
 from google.api_core.exceptions import NotFound
+import google.auth  # type: ignore
+
 from google.cloud import bigquery
 from google.cloud.bigquery import _versions_helpers, exceptions
+import google.cloud.bigquery.dataset
 from google.cloud.bigquery.dbapi import _helpers
 from google.cloud.bigquery.magics import line_arg_parser as lap
 

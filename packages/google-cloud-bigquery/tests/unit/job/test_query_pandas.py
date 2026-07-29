@@ -18,6 +18,7 @@ import json
 from unittest import mock
 
 import pytest
+
 from google.cloud.bigquery.enums import DefaultPandasDTypes
 
 from ..helpers import make_connection
@@ -26,6 +27,7 @@ from .helpers import _make_client, _make_job_resource
 try:
     import google.cloud.bigquery_storage_v1.reader
     import google.cloud.bigquery_storage_v1.services.big_query_read.client
+
     from google.cloud import bigquery_storage
 except (ImportError, AttributeError):
     bigquery_storage = None

@@ -14,9 +14,10 @@
 
 from unittest import mock
 
-import google.api_core.retry
-import google.cloud.bigquery.job
 from google.api_core import exceptions
+import google.api_core.retry
+
+import google.cloud.bigquery.job
 
 from . import helpers
 

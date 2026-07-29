@@ -20,10 +20,11 @@ import textwrap
 import types
 from unittest import mock
 
-import google.cloud.bigquery._job_helpers
-import google.cloud.bigquery.query
 import requests
+
+import google.cloud.bigquery._job_helpers
 from google.cloud.bigquery.client import _LIST_ROWS_FROM_QUERY_RESULTS_FIELDS
+import google.cloud.bigquery.query
 from google.cloud.bigquery.retry import DEFAULT_GET_JOB_TIMEOUT
 from google.cloud.bigquery.table import _EmptyRowIterator
 
@@ -371,6 +372,7 @@ class TestQueryJob(_Base):
 
     def test_query_plan(self):
         from google.cloud._helpers import _RFC3339_MICROS
+
         from google.cloud.bigquery.job import QueryPlanEntry, QueryPlanEntryStep
 
         plan_entries = [

@@ -17,6 +17,7 @@ import decimal
 from unittest import mock
 
 import pytest
+
 from google.cloud import bigquery
 
 pandas = pytest.importorskip("pandas")
