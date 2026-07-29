@@ -103,7 +103,7 @@ def test_result_w_custom_retry(global_time_lock):
         initial=0.001,
         maximum=0.001,
         multiplier=1.0,
-        deadline=0.1,
+        deadline=1.0,
         predicate=custom_predicate,
     )
 

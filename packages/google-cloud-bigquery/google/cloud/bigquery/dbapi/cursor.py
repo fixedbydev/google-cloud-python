@@ -103,6 +103,15 @@ class Cursor(object):
         """Mark the cursor as closed, preventing its further use."""
         self._closed = True
 
+        # Explicitly release references to query data and rows.
+        # This is important because these objects may hold references to underlying
+        # transports or gRPC streams (especially when using BQ Storage API).
+        # Clearing them ensures that resources can be garbage collected deterministically,
+        # preventing intermittent socket leaks (e.g., ESTABLISHED connections) in tests
+        # and long-running applications.
+        self._query_data = None
+        self._query_rows = None
+
     def _set_description(self, schema):
         """Set description from schema.
 

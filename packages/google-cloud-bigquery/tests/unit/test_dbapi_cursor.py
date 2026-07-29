@@ -190,8 +190,16 @@ class TestCursor(unittest.TestCase):
 
         connection = connect(self._mock_client())
         cursor = connection.cursor()
-        # close() is a no-op, there is nothing to test.
+
+        # Simulate that cursor has data/references
+        cursor._query_data = mock.Mock()
+        cursor._query_rows = mock.Mock()
+
         cursor.close()
+
+        self.assertTrue(cursor._closed)
+        self.assertIsNone(cursor._query_data)
+        self.assertIsNone(cursor._query_rows)
 
     def test_raises_error_if_closed(self):
         from google.cloud.bigquery.dbapi import connect
