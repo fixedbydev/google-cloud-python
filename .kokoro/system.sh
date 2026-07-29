@@ -332,8 +332,9 @@ printf '%s\n' "${PACKAGES_TO_TEST[@]}" \
         log_file="$LOG_DIR/$pkg.log"
       fi
 
-      # Run test; if it fails, create a .failed file to signal failure to the reaper
-      run_package_test "$pkg" > "$log_file" 2>&1 || touch "$LOG_DIR/$pkg.failed"
+      # EXPERIMENTAL: Added timeout to prevent hanging tests from blocking the whole run.
+      # This is for experimentation only and will be removed in the final design.
+      timeout 45m run_package_test "$pkg" > "$log_file" 2>&1 || touch "$LOG_DIR/$pkg.failed"
     ' _ "{}"
 
 reap_parallel_results || RETVAL=1
