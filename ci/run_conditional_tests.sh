@@ -82,34 +82,6 @@ subdirs=(
     packages
 )
 
-# --- Ad-hoc Testing Integration ---
-TRIGGER_ADHOC="false"
-if [[ -n "${GITHUB_EVENT_PATH}" ]]; then
-    IS_ADHOC=$(python3 -c "
-import json
-import os
-import sys
-try:
-    with open(os.environ['GITHUB_EVENT_PATH']) as f:
-        event = json.load(f)
-    labels = event.get('pull_request', {}).get('labels', [])
-    if any(l.get('name') == 'test:adhoc' for l in labels):
-        print('true')
-except Exception:
-    pass
-")
-    if [[ "$IS_ADHOC" == "true" ]]; then
-        TRIGGER_ADHOC="true"
-        echo "Adhoc test label 'test:adhoc' found!"
-    fi
-fi
-
-if [[ "$TRIGGER_ADHOC" == "true" ]]; then
-    echo "Running ad-hoc package selection..."
-    source ci/adhoc/adhoc_test_runner.sh
-fi
-# --- End Ad-hoc Testing Integration ---
-
 RETVAL=0
 
 for subdir in ${subdirs[@]}; do
@@ -131,17 +103,6 @@ for subdir in ${subdirs[@]}; do
             # If GIT_DIFF_ARG is empty, run all the tests.
             should_test=true
         fi
-
-        # Ad-hoc check
-        pkg_name=${d#packages/}
-        pkg_name=${pkg_name%%/*}
-        if [[ "$TRIGGER_ADHOC" == "true" ]]; then
-            if [[ " $ADHOC_PACKAGES " =~ " $pkg_name " ]]; then
-                echo "Ad-hoc test requested for ${pkg_name}"
-                should_test=true
-            fi
-        fi
-
         if [ "${should_test}" = true ]; then
             echo "running test in ${d}"
             pushd ${d}
