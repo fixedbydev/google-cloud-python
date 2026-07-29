@@ -5856,6 +5856,30 @@ class TestRowIterator(unittest.TestCase):
                         "pandas-gbq/1.0.0",
                     )
 
+    def test_to_geodataframe_updates_user_agent(self):
+        geopandas = pytest.importorskip("geopandas")
+        row_iterator = self._make_one_from_data(
+            (("name", "STRING"), ("geog", "GEOGRAPHY")),
+            (("foo", "Point(0 0)"),),
+        )
+        mock_client_info = mock.Mock(user_agent="test-agent")
+        row_iterator.client._connection = mock.Mock(_client_info=mock_client_info)
+
+        with mock.patch(
+            "google.cloud.bigquery._versions_helpers.PandasGBQVersions.is_delegation_supported",
+            new_callable=mock.PropertyMock,
+            return_value=True,
+        ):
+            with mock.patch.object(row_iterator, "to_arrow") as mock_to_arrow:
+                import pyarrow as pa
+
+                mock_to_arrow.return_value = pa.RecordBatch.from_arrays(
+                    [pa.array(["foo"]), pa.array(["Point(0 0)"])],
+                    names=["name", "geog"],
+                )
+                df = row_iterator.to_geodataframe(create_bqstorage_client=False)
+                self.assertIn("pandas-gbq/", mock_client_info.user_agent)
+
 
 class TestPartitionRange(unittest.TestCase):
     def _get_target_class(self):

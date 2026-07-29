@@ -2804,22 +2804,22 @@ class RowIterator(HTTPIterator):
             bqstorage_client = None
 
         if _versions_helpers.PANDAS_GBQ_VERSIONS.is_delegation_supported:
-            import pandas_gbq  # type: ignore
+            try:
+                import pandas_gbq  # type: ignore
 
-            if (
-                self.client
-                and hasattr(self.client, "_connection")
-                and hasattr(self.client._connection, "_client_info")
-            ):
-                client_info = self.client._connection._client_info
-                if client_info:
-                    ua = client_info.user_agent or ""
-                    if "pandas-gbq" not in ua:
-                        pandas_gbq_version = getattr(pandas_gbq, "__version__", "0.0.0")
-                        client_info.user_agent = (
-                            f"{ua} pandas-gbq/{pandas_gbq_version}".strip()
-                        )
+                pandas_gbq_version = getattr(pandas_gbq, "__version__", "0.0.0")
+            except ImportError:
+                pandas_gbq_version = "0.0.0"
 
+            client_info = getattr(
+                getattr(self.client, "_connection", None), "_client_info", None
+            )
+            if client_info:
+                ua = client_info.user_agent or ""
+                if "pandas-gbq" not in ua:
+                    client_info.user_agent = (
+                        f"{ua} pandas-gbq/{pandas_gbq_version}".strip()
+                    )
 
         record_batch = self.to_arrow(
             progress_bar_type=progress_bar_type,
