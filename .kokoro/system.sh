@@ -169,8 +169,11 @@ reap_parallel_results() {
       echo "--------------------------------------------------"
       if [ -n "$KOKORO_ARTIFACTS_DIR" ] && [ -f "$KOKORO_ARTIFACTS_DIR/$pkg/sponge_log.log" ]; then
         cat "$KOKORO_ARTIFACTS_DIR/$pkg/sponge_log.log"
-      else
+      elif [ -f "$LOG_DIR/$pkg.log" ]; then
         cat "$LOG_DIR/$pkg.log"
+      else
+        echo "Warning: No log file found for passed package $pkg"
+        echo "Expected either $KOKORO_ARTIFACTS_DIR/$pkg/sponge_log.log or $LOG_DIR/$pkg.log"
       fi
       echo ""
     done
@@ -187,8 +190,11 @@ reap_parallel_results() {
         echo "--------------------------------------------------"
         if [ -n "$KOKORO_ARTIFACTS_DIR" ] && [ -f "$KOKORO_ARTIFACTS_DIR/$pkg/sponge_log.log" ]; then
           cat "$KOKORO_ARTIFACTS_DIR/$pkg/sponge_log.log"
-        else
+        elif [ -f "$LOG_DIR/$pkg.log" ]; then
           cat "$LOG_DIR/$pkg.log"
+        else
+          echo "Warning: No log file found for failed package $pkg"
+          echo "Expected either $KOKORO_ARTIFACTS_DIR/$pkg/sponge_log.log or $LOG_DIR/$pkg.log"
         fi
         echo ""
       fi
@@ -335,14 +341,16 @@ printf '%s\n' "${PACKAGES_TO_TEST[@]}" \
   | xargs -P "$MAX_JOBS" -I {} \
     bash -c '
       pkg="$1"
+      echo "Processing package: $pkg"
       # Determine log location: prefer Sponge artifacts directory if available
       if [ -n "$KOKORO_ARTIFACTS_DIR" ]; then
         pkg_log_dir="$KOKORO_ARTIFACTS_DIR/$pkg"
-        mkdir -p "$pkg_log_dir" || { touch "$LOG_DIR/$pkg.failed"; exit 1; }
+        mkdir -p "$pkg_log_dir" || { echo "Failed to mkdir $pkg_log_dir"; touch "$LOG_DIR/$pkg.failed"; exit 1; }
         log_file="$pkg_log_dir/sponge_log.log"
       else
         log_file="$LOG_DIR/$pkg.log"
       fi
+      echo "Log file for $pkg: $log_file"
 
       # EXPERIMENTAL: Added timeout to prevent hanging tests from blocking the whole run.
       # This is for experimentation only and will be removed in the final design.
