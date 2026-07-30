@@ -204,12 +204,16 @@ class TestBigQuery(unittest.TestCase):
             tag_key = key_values.pop()
 
             # Delete tag values first
-            [
-                tag_values_client.delete_tag_value(name=tag_value.name).result()
-                for tag_value in key_values
-            ]
+            for tag_value in key_values:
+                try:
+                    tag_values_client.delete_tag_value(name=tag_value.name).result()
+                except NotFound:
+                    pass
 
-            tag_keys_client.delete_tag_key(name=tag_key.name).result()
+            try:
+                tag_keys_client.delete_tag_key(name=tag_key.name).result()
+            except NotFound:
+                pass
 
     def test_get_service_account_email(self):
         client = Config.CLIENT
@@ -2203,11 +2207,15 @@ class TestBigQuery(unittest.TestCase):
             rows = cursor.fetchall()
             self.assertEqual(len(rows), 100000)
 
+            cursor.close()
             connection.close()
+
+        del connection, cursor, rows
         import gc
 
         gc.collect()
         for _ in range(60):  # Wait up to 6 seconds for background socket cleanup
+            gc.collect()
             conn_end = current_process.net_connections()
             conn_count_end = len(conn_end)
             new_conns_remaining = [
