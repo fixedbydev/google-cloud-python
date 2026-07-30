@@ -13,8 +13,8 @@
 # limitations under the License.
 
 import freezegun
-from google.api_core import retry as retries
 import google.api_core.exceptions
+from google.api_core import retry as retries
 import pytest
 
 from google.cloud.bigquery import _job_helpers

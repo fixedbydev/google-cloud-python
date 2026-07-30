@@ -17,6 +17,7 @@ import pytest
 from google.cloud import bigquery
 import google.cloud.bigquery.table
 
+
 pytest.importorskip("numpy")
 pytest.importorskip("pyarrow", minversion="3.0.0")
 

@@ -27,12 +27,15 @@ import logging
 import queue
 import threading
 import time
-from typing import Any, Callable, Generator, List, Optional, Union
 import warnings
+from typing import Any, Union, Optional, Callable, Generator, List
 
-from google.cloud.bigquery import _pyarrow_helpers, _versions_helpers
+
+from google.cloud.bigquery import _pyarrow_helpers
+from google.cloud.bigquery import _versions_helpers
 from google.cloud.bigquery import retry as bq_retry
 from google.cloud.bigquery import schema
+
 
 try:
     import pandas  # type: ignore

@@ -19,9 +19,10 @@ from unittest import mock
 import pytest
 
 from google.cloud import bigquery
-from google.cloud.bigquery import enums, schema
-from google.cloud.bigquery.schema import PolicyTagList
+from google.cloud.bigquery import enums
 from google.cloud.bigquery.standard_sql import StandardSqlStructType
+from google.cloud.bigquery import schema
+from google.cloud.bigquery.schema import PolicyTagList
 
 
 class TestSchemaField(unittest.TestCase):

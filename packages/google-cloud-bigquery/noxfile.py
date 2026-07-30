@@ -15,12 +15,12 @@
 from __future__ import absolute_import
 
 import contextlib
-from functools import wraps
 import os
 import pathlib
 import re
 import shutil
 import time
+from functools import wraps
 from typing import Generator
 
 import nox
@@ -597,7 +597,7 @@ def format(session: nox.sessions.Session) -> None:
     to format code to uniform standard.
     """
     session.install(BLACK_VERSION, ISORT_VERSION)
-    python_files = ["google", "tests", "setup.py", "noxfile.py"]
+    python_files = [path for path in os.listdir(".") if path.endswith(".py")]
 
     # Use the --fss option to sort imports using strict alphabetical order.
     # See https://pycqa.github.io/isort/docs/configuration/options.html#force-sort-within-sections

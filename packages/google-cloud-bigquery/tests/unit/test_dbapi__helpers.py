@@ -19,11 +19,12 @@ import operator as op
 import re
 import unittest
 
-import google.cloud._helpers
 import pytest
 
+import google.cloud._helpers
 from google.cloud.bigquery import query, table
-from google.cloud.bigquery.dbapi import _helpers, exceptions
+from google.cloud.bigquery.dbapi import _helpers
+from google.cloud.bigquery.dbapi import exceptions
 
 
 class TestQueryParameters(unittest.TestCase):
@@ -594,8 +595,8 @@ def _expected_error_match(expect):
     ],
 )
 def test_complex_query_parameter_type_errors(type_, value, expect):
-    from google.cloud.bigquery.dbapi import exceptions
     from google.cloud.bigquery.dbapi._helpers import complex_query_parameter
+    from google.cloud.bigquery.dbapi import exceptions
 
     with pytest.raises(
         exceptions.ProgrammingError,

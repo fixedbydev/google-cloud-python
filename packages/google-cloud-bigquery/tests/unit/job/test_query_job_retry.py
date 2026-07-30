@@ -15,10 +15,9 @@ import concurrent.futures
 from unittest import mock
 
 import freezegun
-from google.api_core import exceptions
 import google.api_core.retry
 import pytest
-
+from google.api_core import exceptions
 from google.cloud.bigquery.client import _MIN_GET_QUERY_RESULTS_TIMEOUT
 from google.cloud.bigquery.job import QueryJob
 from google.cloud.bigquery.retry import DEFAULT_GET_JOB_TIMEOUT

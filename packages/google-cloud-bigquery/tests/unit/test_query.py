@@ -169,10 +169,8 @@ class Test_ArrayQueryParameterType(unittest.TestCase):
         self.assertEqual(field._type, "STRING")
 
     def test_to_api_repr(self):
-        from google.cloud.bigquery.query import (
-            ScalarQueryParameterType,
-            StructQueryParameterType,
-        )
+        from google.cloud.bigquery.query import ScalarQueryParameterType
+        from google.cloud.bigquery.query import StructQueryParameterType
 
         array_item_type = StructQueryParameterType(
             ScalarQueryParameterType("INTEGER", name="weight", description="in kg"),
@@ -225,10 +223,8 @@ class Test_StructQueryParameterType(unittest.TestCase):
             self._make_one()
 
     def test_from_api_repr(self):
-        from google.cloud.bigquery.query import (
-            ArrayQueryParameterType,
-            ScalarQueryParameterType,
-        )
+        from google.cloud.bigquery.query import ArrayQueryParameterType
+        from google.cloud.bigquery.query import ScalarQueryParameterType
 
         api_resource = {
             "type": "STRUCT",
@@ -641,7 +637,7 @@ class Test_ScalarQueryParameter(unittest.TestCase):
         self.assertEqual(param.to_api_repr(), EXPECTED)
 
     def test_to_api_repr_w_timestamp_micros(self):
-        from google.cloud._helpers import UTC, _microseconds_from_datetime
+        from google.cloud._helpers import _microseconds_from_datetime, UTC
 
         now = datetime.datetime.now(UTC)
         seconds = _microseconds_from_datetime(now) / 1.0e6
@@ -654,7 +650,7 @@ class Test_ScalarQueryParameter(unittest.TestCase):
         self.assertEqual(param.to_api_repr(), EXPECTED)
 
     def test_to_api_repr_w_datetime_datetime(self):
-        from google.cloud._helpers import UTC, _datetime_to_rfc3339
+        from google.cloud._helpers import _datetime_to_rfc3339, UTC
 
         now = datetime.datetime.now(UTC)
         EXPECTED = {
@@ -668,7 +664,7 @@ class Test_ScalarQueryParameter(unittest.TestCase):
         self.assertEqual(param.to_api_repr(), EXPECTED)
 
     def test_to_api_repr_w_datetime_string(self):
-        from google.cloud._helpers import UTC, _datetime_to_rfc3339
+        from google.cloud._helpers import _datetime_to_rfc3339, UTC
 
         now = datetime.datetime.now(UTC)
         now_str = _datetime_to_rfc3339(now)
@@ -1052,7 +1048,6 @@ class Test_RangeQueryParameter(unittest.TestCase):
 
     def test_to_api_repr_w_datetime_datetime(self):
         from google.cloud._helpers import UTC  # type: ignore
-
         from google.cloud.bigquery._helpers import _RFC3339_MICROS_NO_ZULU
 
         now = datetime.datetime.now(UTC)
@@ -1420,10 +1415,8 @@ class Test_ArrayQueryParameter(unittest.TestCase):
         self.assertEqual(param.to_api_repr(), EXPECTED)
 
     def test_to_api_repr_w_empty_array_of_records_type(self):
-        from google.cloud.bigquery.query import (
-            ScalarQueryParameterType,
-            StructQueryParameterType,
-        )
+        from google.cloud.bigquery.query import ScalarQueryParameterType
+        from google.cloud.bigquery.query import StructQueryParameterType
 
         EXPECTED = {
             "parameterType": {
@@ -1505,10 +1498,8 @@ class Test_ArrayQueryParameter(unittest.TestCase):
         self.assertEqual(repr(int_items), expected)
 
     def test___repr__array_type_struct_type_instance(self):
-        from google.cloud.bigquery.query import (
-            ScalarQueryParameterType,
-            StructQueryParameterType,
-        )
+        from google.cloud.bigquery.query import ScalarQueryParameterType
+        from google.cloud.bigquery.query import StructQueryParameterType
 
         struct_items = self._make_one(
             "struct_items",
@@ -2128,7 +2119,6 @@ class Test__query_param_from_api_repr(unittest.TestCase):
 
     def test_w_scalar_timestamp(self):
         from google.cloud._helpers import UTC
-
         from google.cloud.bigquery.query import ScalarQueryParameter
 
         RESOURCE = {
@@ -2148,7 +2138,6 @@ class Test__query_param_from_api_repr(unittest.TestCase):
 
     def test_w_scalar_timestamp_micros(self):
         from google.cloud._helpers import UTC
-
         from google.cloud.bigquery.query import ScalarQueryParameter
 
         RESOURCE = {

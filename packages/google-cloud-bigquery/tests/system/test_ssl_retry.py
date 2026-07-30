@@ -17,7 +17,6 @@ from unittest import mock
 
 import pytest
 import requests.exceptions
-
 from google.cloud import bigquery
 
 

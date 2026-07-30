@@ -17,9 +17,8 @@ import threading
 import time
 
 import google.api_core.exceptions
-import pytest
-
 import google.cloud.bigquery
+import pytest
 
 
 def thread(func):
@@ -36,7 +35,7 @@ def test_query_retry_539(bigquery_client, dataset_id, job_retry_on_query):
     See: https://github.com/googleapis/python-bigquery/issues/539
     """
     from google.api_core import exceptions
-    from google.api_core.retry import Retry, if_exception_type
+    from google.api_core.retry import if_exception_type, Retry
 
     table_name = f"{dataset_id}.t539"
 

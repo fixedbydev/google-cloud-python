@@ -12,17 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from contextlib import contextmanager
 import logging
-
+from contextlib import contextmanager
 from google.api_core.exceptions import GoogleAPICallError  # type: ignore
 
 logger = logging.getLogger(__name__)
 try:
     from opentelemetry import trace  # type: ignore
-    from opentelemetry.instrumentation.utils import (
-        http_status_to_status_code,
-    )  # type: ignore
+    from opentelemetry.instrumentation.utils import http_status_to_status_code  # type: ignore
     from opentelemetry.trace.status import Status  # type: ignore
 
     HAS_OPENTELEMETRY = True

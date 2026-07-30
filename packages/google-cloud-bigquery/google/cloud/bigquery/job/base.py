@@ -21,13 +21,17 @@ import threading
 import typing
 from typing import ClassVar, Dict, Optional, Sequence
 
-from google.api_core import exceptions
 from google.api_core import retry as retries
+from google.api_core import exceptions
 import google.api_core.future.polling
 
 from google.cloud.bigquery import _helpers
 from google.cloud.bigquery._helpers import _int_or_none
-from google.cloud.bigquery.retry import DEFAULT_GET_JOB_TIMEOUT, DEFAULT_RETRY
+from google.cloud.bigquery.retry import (
+    DEFAULT_GET_JOB_TIMEOUT,
+    DEFAULT_RETRY,
+)
+
 
 _DONE_STATE = "DONE"
 _STOPPED_REASON = "stopped"

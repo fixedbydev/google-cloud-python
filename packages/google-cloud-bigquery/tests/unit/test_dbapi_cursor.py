@@ -17,10 +17,10 @@ import operator as op
 import unittest
 from unittest import mock
 
-from google.api_core import exceptions
-import pytest
-
 import google.cloud.bigquery.table as bq_table
+import pytest
+from google.api_core import exceptions
+
 from tests.unit.helpers import _to_pyarrow
 
 
@@ -642,7 +642,6 @@ class TestCursor(unittest.TestCase):
 
     def test_execute_raises_if_result_raises(self):
         import google.cloud.exceptions
-
         from google.cloud.bigquery import client
         from google.cloud.bigquery.dbapi import connect, exceptions
 

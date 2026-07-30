@@ -16,8 +16,7 @@ import unittest
 
 from google.api_core import exceptions
 
-from ..helpers import make_client as __make_client
-from ..helpers import make_connection
+from ..helpers import make_connection, make_client as __make_client
 
 
 def _make_client(project="test-project", connection=None):
@@ -104,7 +103,6 @@ class _Base(unittest.TestCase):
 
     def _setUpConstants(self):
         import datetime
-
         from google.cloud._helpers import UTC
 
         self.WHEN_TS = 1437767599.006

@@ -17,10 +17,11 @@ import copy
 from typing import Any, Dict, Optional
 import unittest
 
-import pytest
-
-from google.cloud.bigquery import external_config, schema
+from google.cloud.bigquery import external_config
+from google.cloud.bigquery import schema
 from google.cloud.bigquery.enums import SourceColumnMatch
+
+import pytest
 
 
 class TestExternalConfig(unittest.TestCase):

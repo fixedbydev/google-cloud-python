@@ -14,13 +14,11 @@
 
 from unittest import mock
 
-import pytest
-
-import google.cloud.bigquery.dataset
 from google.cloud.bigquery.dataset import Dataset, DatasetReference
+from .helpers import make_connection, dataset_polymorphic, make_client
+import google.cloud.bigquery.dataset
 from google.cloud.bigquery.retry import DEFAULT_TIMEOUT
-
-from .helpers import dataset_polymorphic, make_client, make_connection
+import pytest
 
 
 @dataset_polymorphic

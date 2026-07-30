@@ -23,14 +23,14 @@ See the `BigQuery Magics reference documentation
 
 from __future__ import print_function
 
+import re
 import ast
-from concurrent import futures
 import copy
 import functools
-import re
 import sys
 import time
 import warnings
+from concurrent import futures
 
 try:
     import IPython  # type: ignore
@@ -39,13 +39,14 @@ try:
 except ImportError:
     raise ImportError("This module can only be loaded in IPython.")
 
-from google.api_core import client_info, client_options
+from google.api_core import client_info
+from google.api_core import client_options
 from google.api_core.exceptions import NotFound
 import google.auth  # type: ignore
-
 from google.cloud import bigquery
-from google.cloud.bigquery import _versions_helpers, exceptions
 import google.cloud.bigquery.dataset
+from google.cloud.bigquery import _versions_helpers
+from google.cloud.bigquery import exceptions
 from google.cloud.bigquery.dbapi import _helpers
 from google.cloud.bigquery.magics import line_arg_parser as lap
 
@@ -230,7 +231,7 @@ class Context(object):
 # their code.
 if bigquery_magics is not None:
     context = bigquery_magics.context
-else:  # pragma: NO COVER
+else:
     context = Context()
 
 
@@ -497,9 +498,8 @@ def _cell_magic(line, query):
         raise rebranded_error from exc
     except lap.exceptions.ParseError as exc:
         rebranded_error = ValueError(
-            "Unrecognized input, are option values correct? Error details: {}".format(
-                exc.args[0]
-            )
+            "Unrecognized input, are option values correct? "
+            "Error details: {}".format(exc.args[0])
         )
         raise rebranded_error from exc
 

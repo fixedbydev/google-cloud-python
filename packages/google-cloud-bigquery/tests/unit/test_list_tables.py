@@ -16,8 +16,7 @@ import pytest
 
 import google.cloud.bigquery.dataset
 from google.cloud.bigquery.retry import DEFAULT_TIMEOUT
-
-from .helpers import dataset_polymorphic, make_connection
+from .helpers import make_connection, dataset_polymorphic
 
 
 @dataset_polymorphic

@@ -15,8 +15,8 @@
 import unittest
 from unittest import mock
 
+from google.cloud.bigquery.routine.routine import Routine, RoutineReference
 import pytest
-
 from google.cloud.bigquery.dataset import (
     AccessEntry,
     Condition,
@@ -25,7 +25,6 @@ from google.cloud.bigquery.dataset import (
     Table,
     TableReference,
 )
-from google.cloud.bigquery.routine.routine import Routine, RoutineReference
 
 
 class TestAccessEntry(unittest.TestCase):
@@ -895,7 +894,6 @@ class TestDataset(unittest.TestCase):
 
     def _setUpConstants(self):
         import datetime
-
         from google.cloud._helpers import UTC
 
         self.WHEN_TS = 1437767599.006
@@ -1034,7 +1032,7 @@ class TestDataset(unittest.TestCase):
             self._make_one("some_dset")
 
     def test_ctor_explicit(self):
-        from google.cloud.bigquery.dataset import AccessEntry, DatasetReference
+        from google.cloud.bigquery.dataset import DatasetReference, AccessEntry
 
         phred = AccessEntry("OWNER", "userByEmail", "phred@example.com")
         bharney = AccessEntry("OWNER", "userByEmail", "bharney@example.com")

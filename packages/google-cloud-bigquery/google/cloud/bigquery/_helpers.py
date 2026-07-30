@@ -19,25 +19,23 @@ import datetime
 import decimal
 import json
 import math
-import os
 import re
+import os
 import textwrap
-from typing import Any, Optional, Tuple, Type, Union
 import warnings
+from typing import Any, Optional, Tuple, Type, Union
 
 from dateutil import relativedelta
-from google.api_core import client_options as client_options_lib
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.cloud._helpers import (
-    _RFC3339_MICROS,
-    _RFC3339_NO_FRACTION,
-    _date_from_iso8601_date,
-    _datetime_from_microseconds,
-    _to_bytes,
-)
 from google.cloud._helpers import UTC  # type: ignore
-
+from google.cloud._helpers import _date_from_iso8601_date
+from google.cloud._helpers import _datetime_from_microseconds
+from google.cloud._helpers import _RFC3339_MICROS
+from google.cloud._helpers import _RFC3339_NO_FRACTION
+from google.cloud._helpers import _to_bytes
 from google.cloud.bigquery import enums
+
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.api_core import client_options as client_options_lib
 
 TimeoutType = Union[float, None]
 

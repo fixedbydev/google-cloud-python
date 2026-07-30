@@ -16,16 +16,18 @@ import datetime
 import re
 from unittest import mock
 
-import freezegun
+import pytest
+
 import google.api_core.exceptions
 import google.api_core.retry
-import pytest
+import freezegun
 import requests.exceptions
 
 from google.cloud.bigquery import _job_helpers
 import google.cloud.bigquery.retry
 
 from .helpers import make_client, make_connection
+
 
 _RETRY_NOT_FOUND = {
     "job_retry": google.api_core.retry.Retry(

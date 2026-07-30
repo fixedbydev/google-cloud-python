@@ -17,8 +17,8 @@
 from __future__ import annotations
 
 import collections
-from collections import abc as collections_abc
 import re
+from collections import abc as collections_abc
 from typing import Optional
 
 try:
@@ -30,7 +30,6 @@ else:
     _ARROW_COMPRESSION_SUPPORT = True
 
 import google.cloud.exceptions  # type: ignore
-
 from google.cloud.bigquery import job
 from google.cloud.bigquery.dbapi import _helpers, exceptions
 

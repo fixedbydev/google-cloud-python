@@ -15,8 +15,7 @@
 import pytest
 
 from google.cloud.bigquery.retry import DEFAULT_TIMEOUT
-
-from .helpers import dataset_polymorphic, make_connection
+from .helpers import make_connection, dataset_polymorphic
 
 
 def test_list_routines_empty_w_timeout(client):

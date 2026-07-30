@@ -18,8 +18,9 @@ import decimal
 import uuid
 
 import google.api_core.exceptions
-from google.cloud._helpers import UTC
 import test_utils.retry
+
+from google.cloud._helpers import UTC
 
 _naive = datetime.datetime(2016, 12, 5, 12, 41, 9)
 _naive_microseconds = datetime.datetime(2016, 12, 5, 12, 41, 9, 250000)

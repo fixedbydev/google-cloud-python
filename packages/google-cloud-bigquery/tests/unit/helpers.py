@@ -21,9 +21,8 @@ import google.cloud.bigquery.dataset
 
 
 def make_connection(*responses):
-    from google.cloud.exceptions import NotFound
-
     import google.cloud.bigquery._http
+    from google.cloud.exceptions import NotFound
 
     mock_conn = mock.create_autospec(google.cloud.bigquery._http.Connection)
     mock_conn.user_agent = "testing 1.2.3"
