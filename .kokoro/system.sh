@@ -160,8 +160,20 @@ reap_parallel_results() {
 
   if [ ${#passed_packages[@]} -gt 0 ]; then
     echo ""
-    echo "PASSED PACKAGES:"
-    printf "%s\n" "${passed_packages[@]}" | sort | sed 's/^/- /'
+    echo "=================================================="
+    echo "             LOGS FOR PASSED PACKAGES             "
+    echo "=================================================="
+    for pkg in "${passed_packages[@]}"; do
+      echo "--------------------------------------------------"
+      echo "LOGS FOR PASSED PACKAGE: $pkg"
+      echo "--------------------------------------------------"
+      if [ -n "$KOKORO_ARTIFACTS_DIR" ] && [ -f "$KOKORO_ARTIFACTS_DIR/$pkg/sponge_log.log" ]; then
+        cat "$KOKORO_ARTIFACTS_DIR/$pkg/sponge_log.log"
+      else
+        cat "$LOG_DIR/$pkg.log"
+      fi
+      echo ""
+    done
   fi
 
   if [ "$failed_count" -gt 0 ]; then
