@@ -16,7 +16,6 @@
 
 from __future__ import absolute_import, annotations, division
 
-from collections import abc as collections_abc
 import copy
 import datetime
 import functools
@@ -28,6 +27,9 @@ import math
 import os
 import tempfile
 import typing
+import uuid
+import warnings
+from collections import abc as collections_abc
 from typing import (
     IO,
     Any,
@@ -41,24 +43,23 @@ from typing import (
     Tuple,
     Union,
 )
-import uuid
-import warnings
 
-from google.api_core import page_iterator
-from google.api_core import retry as retries
 import google.api_core.client_options
 import google.api_core.exceptions as core_exceptions
-from google.api_core.iam import Policy
 import google.cloud._helpers  # type: ignore
-from google.cloud.client import (
-    ClientWithProject,
-)  # type: ignore  # pytype: disable=import-error
-from google.resumable_media.requests import MultipartUpload  # type: ignore
-from google.resumable_media.requests import ResumableUpload
 import requests
-
 from google import resumable_media  # type: ignore
+from google.api_core import page_iterator
+from google.api_core import retry as retries
+from google.api_core.iam import Policy
 from google.cloud import exceptions  # pytype: disable=import-error
+from google.cloud.client import (
+    ClientWithProject,  # type: ignore  # pytype: disable=import-error
+)
+from google.resumable_media.requests import (
+    MultipartUpload,  # type: ignore
+    ResumableUpload,
+)
 
 try:
     from google.cloud.bigquery_storage_v1.services.big_query_read.client import (
@@ -69,15 +70,14 @@ except ImportError:
 
 
 from google.auth.credentials import Credentials
-
 from google.cloud.bigquery import (
     _job_helpers,
     _pandas_helpers,
     _versions_helpers,
     enums,
+    job,
 )
 from google.cloud.bigquery import exceptions as bq_exceptions
-from google.cloud.bigquery import job
 from google.cloud.bigquery._helpers import (
     _DEFAULT_HOST,
     _DEFAULT_HOST_TEMPLATE,
