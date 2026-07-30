@@ -354,7 +354,7 @@ printf '%s\n' "${PACKAGES_TO_TEST[@]}" \
 
       # EXPERIMENTAL: Added timeout to prevent hanging tests from blocking the whole run.
       # This is for experimentation only and will be removed in the final design.
-      # We must use 'bash -c' because timeout expects an executable, not an exported function.
+      # We must use "bash -c" because timeout expects an executable, not an exported function.
       # Using double quotes to avoid breaking the outer single-quoted script.
       timeout 45m bash -c "run_package_test \"\$1\"" _ "$pkg" > "$log_file" 2>&1 || touch "$LOG_DIR/$pkg.failed"
     '
