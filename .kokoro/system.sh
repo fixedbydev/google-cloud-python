@@ -340,7 +340,7 @@ export system_test_script PROJECT_ROOT KOKORO_GFILE_DIR
 printf '%s\n' "${PACKAGES_TO_TEST[@]}" \
   | xargs -n 1 -P "$MAX_JOBS" \
     bash -c '
-      pkg="$1"
+      pkg="$0"
       echo "Processing package: $pkg"
       # Determine log location: prefer Sponge artifacts directory if available
       if [ -n "$KOKORO_ARTIFACTS_DIR" ]; then
@@ -357,7 +357,7 @@ printf '%s\n' "${PACKAGES_TO_TEST[@]}" \
       # We must use 'bash -c' because timeout expects an executable, not an exported function.
       # Using double quotes to avoid breaking the outer single-quoted script.
       timeout 45m bash -c "run_package_test \"\$1\"" _ "$pkg" > "$log_file" 2>&1 || touch "$LOG_DIR/$pkg.failed"
-    ' _
+    '
 
 reap_parallel_results || RETVAL=1
 
