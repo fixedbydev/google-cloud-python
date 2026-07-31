@@ -37,6 +37,9 @@ import bigframes.pandas
 )
 def _cell_magic(line, cell):
     ipython = get_ipython()
+    if ipython is None:
+        return
+
     args = magic_arguments.parse_argstring(_cell_magic, line)
     if not cell:
         print("Query is missing.")

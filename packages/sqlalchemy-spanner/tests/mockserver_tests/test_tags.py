@@ -63,7 +63,7 @@ class TestStaleReads(MockServerTestBase):
 
         add_singer_query_result("SELECT singers.id, singers.name\n" + "FROM singers")
         add_single_singer_query_result(
-            "SELECT singers.id AS singers_id, singers.name AS singers_name\n"
+            "SELECT singers.id, singers.name\n"
             "FROM singers\n"
             "WHERE singers.id = @a0"
         )
